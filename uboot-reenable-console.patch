@@ -1,0 +1,20 @@
+commit 7eccc7a6f39e0f31df2b46738df57074c6930c2d
+Author: Chloe Bethel <chloe@9net.org>
+Date:   Tue Nov 1 16:59:45 2022 +0000
+
+    Revert "rock-5b-rk3588_defconfig: disable console"
+    
+    This reverts commit 0f21198b68538fa98d90ae35b85d08527b5ecaa6.
+
+diff --git a/configs/rock-5b-rk3588_defconfig b/configs/rock-5b-rk3588_defconfig
+index 987d9298f5..c9d07d187d 100644
+--- a/configs/rock-5b-rk3588_defconfig
++++ b/configs/rock-5b-rk3588_defconfig
+@@ -31,7 +31,6 @@ CONFIG_SPL_FIT_IMAGE_POST_PROCESS=y
+ CONFIG_SPL_FIT_HW_CRYPTO=y
+ # CONFIG_SPL_SYS_DCACHE_OFF is not set
+ CONFIG_BOOTDELAY=0
+-CONFIG_DISABLE_CONSOLE=y
+ CONFIG_SYS_CONSOLE_INFO_QUIET=y
+ # CONFIG_DISPLAY_CPUINFO is not set
+ CONFIG_ANDROID_BOOTLOADER=y

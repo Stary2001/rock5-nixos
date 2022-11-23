@@ -41,15 +41,14 @@ let
 
     src = if src == null then defaultSrc else src;
 
-    patches = [];
-    #patches = [
-    #  ./0001-configs-rpi-allow-for-bigger-kernels.patch
+    patches = [
+      ./0001-configs-rpi-allow-for-bigger-kernels.patch
 
       # Make U-Boot forward some important settings from the firmware-provided FDT. Fixes booting on BCM2711C0 boards.
       # See also: https://github.com/NixOS/nixpkgs/issues/135828
       # Source: https://patchwork.ozlabs.org/project/uboot/patch/20210822143656.289891-1-sjoerd@collabora.com/
-    #  ./0001-rpi-Copy-properties-from-firmware-dtb-to-the-loaded-.patch
-    #] ++ extraPatches;
+      ./0001-rpi-Copy-properties-from-firmware-dtb-to-the-loaded-.patch
+    ] ++ extraPatches;
 
     postPatch = ''
       patchShebangs tools
@@ -165,6 +164,9 @@ in {
       platforms = [ "aarch64-linux" ];
       license = lib.licenses.unfreeRedistributableFirmware;
     };
+
+    extraPatches = [ ./uboot-reenable-console.patch ];
+
     filesToInstall = [ "u-boot.itb" "idbloader.img" ];
     postBuild = ''
       ./tools/mkimage -n rk3588 -T rksd -d ${rkbin}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.08.bin:spl/u-boot-spl.bin idbloader.img
